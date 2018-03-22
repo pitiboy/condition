@@ -138,10 +138,12 @@ const environmentOptions = {
   IS_PRODUCTION,
   name: pkg.name,
   title: pkg.description,
-  description: `${pkg.description} v${pkg.version}`,
+  description: `${pkg.name} v${pkg.version}: ${pkg.description} `,
   application: {
     name: JSON.stringify(pkg.name),
+    title: JSON.stringify(`${pkg.name} v${pkg.version}`),
     version: JSON.stringify(pkg.version),
+    description: JSON.stringify(pkg.description),
     homepage: JSON.stringify(pkg.homepage),
   },
   homepage_test: JSON.stringify(pkg.homepage_test),

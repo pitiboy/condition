@@ -6,7 +6,16 @@ import SampleComponent from './components/SampleComponent';
 export default function App() {
   return (
     <div>
-      <h1>Examples</h1>
+
+
+      <h1>{ENV.application.title}</h1>
+
+      <p>
+        See Project at Github: <a href="https://github.com/pitiboy/react-conditional-render" target="_blank" rel="noopener noreferrer">https://github.com/pitiboy/react-conditional-render</a>
+      </p>
+
+
+      <h2>Examples</h2>
 
       <h3>renderAllValid = true</h3>
       <RenderContainer renderAllValid>
@@ -99,6 +108,9 @@ export default function App() {
         <div condition={null}>fourth</div>
         <h5 renderIfNoValid>ELSE3!</h5>
       </RenderContainer>
+
+
     </div>
+
   );
 }

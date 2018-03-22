@@ -37,16 +37,20 @@ currently there is no npm package exists, you need to download, and add manually
 ```js
 import { RenderContainer } from '../src/components/conditional-render';
 ```
+... or if you want to use our *(to be implemented)* renderer components, you can import them as well
+```js
+import { RenderContainer, FadingRenderer } from '../src/components/conditional-render';
+```
 
 #### Props / Config Options
 you can pass the following properties to *`RenderContainer`*
-- **`renderAllValid`** is `bool`, default  is `false`. This enforces the if-elseif-else behavior by default, other than all valid items are displayed
-- **`renderAllOther`** is `bool`, default  is `false` means disabled. This let multiple ELSEs to be displayed if there were no *`condition`* to be found = `true`
-- **`rendererComponent`** is a component of type `PropTypes.func`, default is `BasicRenderer`, which is a self-component used for displaying the child embedded in a `<div>`. You can add your own custom renderer Component. Later you might use `FadeingRenderer` *(to be implemented)* which mimics fadingIn with CSS transition.
+- **`renderAllValid`** is `PropTypes.bool`, default  is `false`. This enforces the if-elseif-else behavior by default, other than all valid items are displayed
+- **`renderAllOther`** is `PropTypes.bool`, default  is `false` means disabled. This let multiple ELSEs to be displayed if there were no *`condition`* to be found = `true`
+- **`rendererComponent`** is a component of type `PropTypes.func`, default is `BasicRenderer`, which is a self-component used for displaying the child embedded in a `<div>`. You can add your own custom renderer Component. Later you might use `FadingRenderer` *(to be implemented)* which mimics fadingIn with CSS transition.
 
 you can pass the following properties to *Child* objects
-- **`condition`** is `bool`, default is `false`. This is the evaluator if a child is to be displayed or not
-- **`renderIfNoValid`** is `bool`, default is `false` please note multiple renderIfNoValid could be applied
+- **`condition`** is `PropTypes.bool`, default is `false`. This is the evaluator if a child is to be displayed or not
+- **`renderIfNoValid`** is `PropTypes.bool`, default is `false` please note multiple renderIfNoValid could be applied
 #### dependencies
 - see [package.json](https://github.com/pitiboy/react-conditional-render/blob/master/package.json) for details
 
@@ -86,7 +90,7 @@ Check the full example file [source code here](https://github.com/pitiboy/react-
 ```
 
 ### Todos to be coming:
-- Implement wrapper helper / HOC components, like `FadingRenderer` to apply other actions on condition changes (like animation)
+- Implement wrapper helper components, like `FadingRenderer`, to apply other actions on condition changes (such as fading animation)
 
 - Make the test even more interactive, and 'responsive' to user, by thicking checkboxes near all lines for render condition status change
 
