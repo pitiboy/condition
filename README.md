@@ -7,10 +7,11 @@
 There are many ways to do so.
 - I personally favour to use the logical operation `{true && (<JSX/>)}` for simple expressions as much as possible. Of course this is the easiest thing to do, and there are a lot more other nice or less nice solutions.
 - The other solution I, is creating an additional *factory* component to serve as the if-else engine. I'm not keen on seeing such solution more than one per project, as that might result additional effort and same code patterns in multiple places  :)
+
 Recently, I were inspired by the blog [this entry](https://blog.logrocket.com/conditional-rendering-in-react-c6b0e5af381e).
 This is a comprehensive guidance to enlist 7 more design patterns. I valued the ‘If component’ and ‘Higher-order components’ section the most, as it gave new knowledge for me.
-
 Sometimes if find these solutions to be a bit weird to React JSX notation, and also it doesn't really solves the ELSE problem, which remains still a big need.
+
 So I was about to find even more robust, beautiful and JSX-like solution to my eye for conditional rendering.
 Especially I were interested in a multiple IF - [ELSEIF]* - [ELSE]* closure.
 This is how this project came along, based on a friendly discussion with a colleague, and a very simple idea, as follows.
