@@ -29,13 +29,23 @@ It applies 1 'hack' compare to all other logical operator based described in abo
 
 
 ### How to use
-you can pass the following properties to `RenderContainer`
+#### How to add to your project
+
+currently there is no npm package exists, you need to download, and add manually to your local source folder, then import to your React App:
+```js
+import { RenderContainer } from '../src/components/conditional-render';
+```
+
+#### Props / Config Options
+you can pass the following properties to *`RenderContainer`*
 - **`renderAllValid`** is `bool`, default  is `false`. This enforces the if-elseif-else behavior by default, other than all valid items are displayed
+- **`rendererComponent`** is a component of type `PropTypes.func`, default is `BasicRenderer`, which is a self-component used for displaying the child embedded in a `<div>`. You can add your own custom renderer Component. Later you might use `FadeingRenderer` *(to be implemented)* which mimics fadingIn with CSS transition.
 
 you can pass the following properties to *Child* objects
 - **`condition`** is `bool`, default is `false`. This is the evaluator if a child is to be displayed or not
 - **`renderIfNoValid`** is `bool`, default is `false` please note multiple renderIfNoValid could be applied
-</p>
+#### dependencies
+see [package.json](https://github.com/pitiboy/react-conditional-render/blob/master/package.json) for details
 
 ### Example:
 Check the full example file [source code here](https://github.com/pitiboy/react-conditional-render/blob/master/examples/App.js)
@@ -73,7 +83,7 @@ Check the full example file [source code here](https://github.com/pitiboy/react-
 ```
 
 ### Todos to be coming:
-- Create additional wrapper helper / HOC components to apply other actions on condition change (like animation)
+- Implement wrapper helper / HOC components, like `FadingRenderer` to apply other actions on condition changes (like animation)
 
 - Make the test even more interactive, and 'responsive' to user, by thicking checkboxes near all lines for render condition status change
 

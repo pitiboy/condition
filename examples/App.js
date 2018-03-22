@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { RenderContainer } from '../src/components/conditional-render';
+import { RenderContainer, FadingRenderer } from '../src/components/conditional-render';
 import SampleComponent from './components/SampleComponent';
 
 export default function App() {
@@ -90,7 +90,7 @@ export default function App() {
 
       <h3>renderIfNoValid && renderAllOther = true</h3>
       <p><i>displaying all renderIfNoValid:</i></p>
-      <RenderContainer renderAllOther>
+      <RenderContainer renderAllOther rendererComponent={FadingRenderer}>
         <h5 renderIfNoValid>ELSE!</h5>
         <div condition={false}>IF</div>
         <div condition={false}>second</div>

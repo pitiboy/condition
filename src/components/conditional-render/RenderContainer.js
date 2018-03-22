@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { oneOrManyChildElements } from '../../prop-types';
+import BasicRenderer from './BasicRenderer';
 
 export default class RenderContainer extends React.Component {
   static propTypes = {
     children: oneOrManyChildElements,
     renderAllValid: PropTypes.bool,
     renderAllOther: PropTypes.bool,
+    rendererComponent: PropTypes.func,
   }
 
   static defaultProps = {
@@ -23,6 +25,10 @@ export default class RenderContainer extends React.Component {
   }
   get _getChildrenList() {
     return this.props.children;
+  }
+
+  get _rendererComponent() {
+    return this.props.rendererComponent || BasicRenderer;
   }
 
   cleanUpChild(child) {
@@ -71,22 +77,21 @@ export default class RenderContainer extends React.Component {
             this.foundFirstToRender(child);
 
             return (
-              <div key={index}>
+              <this._rendererComponent key={index}>
                 {this.cleanUpChild(child)}
-              </div>
+              </this._rendererComponent>
             );
           }
           return null;
         })}
         {React.Children.map(this.getOtherChildrenList, (child, index) => {
-          console.log('child.props', child.props);
           if (this.isToBeRendered(child.props)) {
             if (!this.props.renderAllOther) this.foundFirstToRender(child);
 
             return (
-              <div key={index}>
+              <this._rendererComponent key={index}>
                 {this.cleanUpChild(child)}
-              </div>
+              </this._rendererComponent>
             );
           }
           return null;
