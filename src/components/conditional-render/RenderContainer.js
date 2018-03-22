@@ -6,13 +6,22 @@ export default class RenderContainer extends React.Component {
   static propTypes = {
     children: oneOrManyChildElements,
     renderAllValid: PropTypes.bool,
+    renderAllOther: PropTypes.bool,
   }
 
   static defaultProps = {
     renderAllValid: false, // NOTE: this enforces the if-elseif-else behaviour by default
+    renderAllOther: false, // NOTE: this let mutliple ELSEs to be displayed, disabled by default
   }
 
-  get getChildrenList() {
+
+  get getConditionalChildrenList() {
+    return this._getChildrenList.filter(child => !child.props.renderIfNoValid);
+  }
+  get getOtherChildrenList() {
+    return this.props.children.filter(child => child.props.renderIfNoValid);
+  }
+  get _getChildrenList() {
     return this.props.children;
   }
 
@@ -27,7 +36,7 @@ export default class RenderContainer extends React.Component {
     // NOTE: cloneElement() only merges otherProps, doesn't remove old props
     // const newChild = React.cloneElement(child, otherProps);
 
-    // TODO: remove these only for some basic child.types.
+    // TODO: remove these only for some basic child.types!
 
     const newChild = (<child.type {...otherProps}>{child.props.children}</child.type>);
     // console.debug('replaced props from ', child.props, 'to', newChild.props);
@@ -57,9 +66,22 @@ export default class RenderContainer extends React.Component {
   render() {
     return (
       <div>
-        {React.Children.map(this.getChildrenList, (child, index) => {
+        {React.Children.map(this.getConditionalChildrenList, (child, index) => {
           if (this.isToBeRendered(child.props)) {
             this.foundFirstToRender(child);
+
+            return (
+              <div key={index}>
+                {this.cleanUpChild(child)}
+              </div>
+            );
+          }
+          return null;
+        })}
+        {React.Children.map(this.getOtherChildrenList, (child, index) => {
+          console.log('child.props', child.props);
+          if (this.isToBeRendered(child.props)) {
+            if (!this.props.renderAllOther) this.foundFirstToRender(child);
 
             return (
               <div key={index}>
