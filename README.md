@@ -10,7 +10,7 @@ There are many ways to do so.
 
 Recently, I were inspired by the blog [this entry](https://blog.logrocket.com/conditional-rendering-in-react-c6b0e5af381e).
 This is a comprehensive guidance to enlist 7 more design patterns. I valued the ‘If component’ and ‘Higher-order components’ section the most, as it gave new knowledge for me.
-Sometimes if find these solutions to be a bit weird to React JSX notation, and also it doesn't really solves the ELSE problem, which remains still a big need.
+Somehow I find majority of these solutions with complex code to be a bit weird against standard React JSX notation, and also it doesn't really solves the ELSE problem, which remains still a big need.
 
 So I was about to find even more robust, beautiful and JSX-like solution to my eye for conditional rendering.
 Especially I were interested in a multiple IF - [ELSEIF]* - [ELSE]* closure.
