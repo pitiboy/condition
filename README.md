@@ -1,5 +1,7 @@
 # react-conditional-render
 
+[version](https://github.com/pitiboy/react-conditional-render/blob/master/package.json)
+
 ## How to apply If-Else condition in React/JSX?
 
 There are many ways to do so.
