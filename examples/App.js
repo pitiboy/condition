@@ -1,19 +1,14 @@
 import React from 'react';
 
-// import './theme/app.global.scss';
-
-import funcs from '../src/components/conditional-render';
+import { RenderContainer } from '../src/components/conditional-render';
 import SampleComponent from './components/SampleComponent';
-
-const { RenderContainer, version } = funcs;
-console.log('TODO: smarter import for RenderContainer', funcs, version);
 
 export default function App() {
   return (
     <div>
       <h1>Examples</h1>
 
-      <h2>renderAllValid = true</h2>
+      <h3>renderAllValid = true</h3>
       <RenderContainer renderAllValid>
         <div condition={false}>first</div>
         <div condition>second</div>
@@ -45,7 +40,7 @@ export default function App() {
       </RenderContainer>
 
 
-      <h2>renderAllValid = false</h2>
+      <h3>renderAllValid = false</h3>
       <RenderContainer>
         <div condition={false}>first</div>
         <div condition>second</div>
@@ -77,7 +72,7 @@ export default function App() {
       </RenderContainer>
 
 
-      <h2>renderAllValid = false</h2>
+      <h3>use renderIfNoValid</h3>
       <RenderContainer>
         <div condition={false}>IF</div>
         <div condition={false}>second</div>

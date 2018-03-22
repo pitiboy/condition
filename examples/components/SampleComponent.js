@@ -16,7 +16,7 @@ export default class SampleComponent extends React.Component {
     return (
       <div style={{ border: 'solid 1px gray', margin: '10px', padding: '10px' }}>
         {text && (
-          <h1>{text}</h1>
+          <h4>{text}</h4>
         )}
         {children && (
           <div>

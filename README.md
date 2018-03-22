@@ -55,6 +55,39 @@ You can find a very basic demo at <a href="https://react-conditional-render.surg
   </ul>
 </p>
 
+<h3>Example:</h3>
+<p>
+  Check the full example file source code at <a href="https://github.com/pitiboy/react-conditional-render/blob/master/examples/App.js" target="blank">https://github.com/pitiboy/react-conditional-render/blob/master/examples/App.js</a>
+</p>
+<pre>
+<span class="pl-k">&lt;</span>RenderContainer renderAllValid<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>div condition<span class="pl-k">=</span>{<span class="pl-c1">false</span>}<span class="pl-k">&gt;</span>first<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>div condition<span class="pl-k">&gt;</span>second<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>div condition<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>2<span class="pl-pds">'</span></span><span class="pl-k">===</span><span class="pl-c1">2</span>}<span class="pl-k">&gt;</span>third<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>div condition<span class="pl-k">=</span>{<span class="pl-c1">null</span>}<span class="pl-k">&gt;</span>fourth<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>div condition<span class="pl-k">=</span>{<span class="pl-k">new</span> <span class="pl-en">Date</span>().<span class="pl-c1">getDay</span>() <span class="pl-k">===</span> <span class="pl-c1">0</span>}<span class="pl-k">&gt;</span>It<span class="pl-k">&amp;</span>acute;s Sunday<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>div condition<span class="pl-k">=</span>{<span class="pl-k">new</span> <span class="pl-en">Date</span>().<span class="pl-c1">getDay</span>() <span class="pl-k">===</span> <span class="pl-c1">1</span>}<span class="pl-k">&gt;</span>It<span class="pl-k">&amp;</span>acute;s Monday<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>div condition<span class="pl-k">=</span>{<span class="pl-k">new</span> <span class="pl-en">Date</span>().<span class="pl-c1">getDay</span>() <span class="pl-k">===</span> <span class="pl-c1">2</span>}<span class="pl-k">&gt;</span>It<span class="pl-k">&amp;</span>acute;s Tuesday<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>div condition<span class="pl-k">=</span>{<span class="pl-k">new</span> <span class="pl-en">Date</span>().<span class="pl-c1">getDay</span>() <span class="pl-k">===</span> <span class="pl-c1">3</span>}<span class="pl-k">&gt;</span>It<span class="pl-k">&amp;</span>acute;s Wednesday<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>div condition<span class="pl-k">=</span>{<span class="pl-k">new</span> <span class="pl-en">Date</span>().<span class="pl-c1">getDay</span>() <span class="pl-k">===</span> <span class="pl-c1">4</span>}<span class="pl-k">&gt;</span>It<span class="pl-k">&amp;</span>acute;s Thursday<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>div condition<span class="pl-k">=</span>{<span class="pl-k">new</span> <span class="pl-en">Date</span>().<span class="pl-c1">getDay</span>() <span class="pl-k">===</span> <span class="pl-c1">5</span>}<span class="pl-k">&gt;</span>It<span class="pl-k">&amp;</span>acute;s Friday<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>div condition<span class="pl-k">=</span>{<span class="pl-k">new</span> <span class="pl-en">Date</span>().<span class="pl-c1">getDay</span>() <span class="pl-k">===</span> <span class="pl-c1">6</span>}<span class="pl-k">&gt;</span>It<span class="pl-k">&amp;</span>acute;s Saturday<span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>SampleComponent condition<span class="pl-k">&gt;</span><span class="pl-c1">Text</span> Content to be applied<span class="pl-k">&lt;</span><span class="pl-k">/</span>SampleComponent<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>SampleComponent condition text<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>This is a title<span class="pl-pds">"</span></span> <span class="pl-k">/</span><span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>SampleComponent condition<span class="pl-k">&gt;</span><br />
+  <span class="pl-k">&lt;</span>SampleComponent<span class="pl-k">&gt;</span><br />
+    <span class="pl-k">&lt;</span>div style<span class="pl-k">=</span>{{ backgroundColor<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>#f8f8f8<span class="pl-pds">'</span></span> }}<span class="pl-k">&gt;</span><br />
+      <span class="pl-k">&lt;</span>SampleComponent text<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>More complex object<span class="pl-pds">"</span></span> <span class="pl-k">/</span><span class="pl-k">&gt;</span><br />
+      <span class="pl-k">&lt;</span>div style<span class="pl-k">=</span>{{ display<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>flex<span class="pl-pds">'</span></span> }}<span class="pl-k">&gt;</span><br />
+        <span class="pl-k">&lt;</span>li<span class="pl-k">&gt;</span>Which<span class="pl-k">&lt;</span><span class="pl-k">/</span>li<span class="pl-k">&gt;&lt;</span>li<span class="pl-k">&gt;</span>has<span class="pl-k">&lt;</span><span class="pl-k">/</span>li<span class="pl-k">&gt;&lt;</span>li<span class="pl-k">&gt;</span>some<span class="pl-k">&lt;</span><span class="pl-k">/</span>li<span class="pl-k">&gt;&lt;</span>li<span class="pl-k">&gt;</span>structure<span class="pl-k">&lt;</span><span class="pl-k">/</span>li<span class="pl-k">&gt;</span><br />
+      <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><br />
+    <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><br />
+  <span class="pl-k">&lt;</span><span class="pl-k">/</span>SampleComponent<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>SampleComponent<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span>div renderIfNoValid<span class="pl-k">&gt;</span><span class="pl-c1">ELSE</span><span class="pl-k">!</span><span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span><br />
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>RenderContainer<span class="pl-k">&gt;</span>
+</pre>
+
 <h3>Todos to be coming:</h3>
 <ul>
   <li>Create additional wrapper helper / HOC components to apply other actions on condition change (like animation)</li>

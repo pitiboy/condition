@@ -2,7 +2,7 @@ import RenderContainer from './RenderContainer';
 
 const { name, version, homepage } = ENV.application;
 
-export default {
+module.exports = {
   RenderContainer,
   name,
   version,
