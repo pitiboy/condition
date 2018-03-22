@@ -1,8 +1,10 @@
 import RenderContainer from './RenderContainer';
 
-console.log('TODO: ENV.application.version');
+const { name, version, homepage } = ENV.application;
 
 export default {
   RenderContainer,
-  version: '',
+  name,
+  version,
+  homepage,
 };

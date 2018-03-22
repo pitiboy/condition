@@ -1,19 +1,22 @@
 {
   "name": "react-conditional-render",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React component to handle if-else like conditions in JSX",
   "keywords": [
     "React",
     "if-else",
     "condition"
   ],
-  "main": "./app/index.js",
+  "main": "./examples/index.js",
   "scripts": {
     "dev": "NODE_ENV=development AUTO_LOGIN=1 webpack-dev-server --content-base build/ --config webpack.config.js --hot --inline",
     "test": "jest",
     "cleanbuild": "rm -rf ./build/*.js;rm -rf ./build/react-conditional-render*.css",
     "prebuild": "yarn test",
-    "build": "yarn cleanbuild; NODE_ENV=production webpack -p --config webpack.config.js"
+    "build": "yarn cleanbuild; NODE_ENV=production webpack -p --config webpack.config.js",
+    "predeploy": "yarn test",
+    "surgedeploy": "surge ./build react-conditional-render.surge.sh",
+    "deploy": "yarn build; yarn surgedeploy"
   },
   "author": "Peter Horvath <pitiboy@gmail.com>",
   "contributors": "Peter Horvath <horvath.peter@fejlesztesek.hu>",
@@ -99,7 +102,7 @@
       "^.+\\.(s?css|less|svg)$": "identity-obj-proxy"
     },
     "modulePathIgnorePatterns": [
-      "./app/SomeTest.spec.js"
+      "./examples/SomeTest.spec.js"
     ]
   }
 }

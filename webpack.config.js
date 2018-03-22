@@ -9,18 +9,8 @@ const pkg = require('./package.json');
 
 // ========== CONFIG ===========
 const NODE_ENV = process.env.NODE_ENV;
-// const APP_TEMPLATE = process.env.APP_TEMPLATE;
 const IS_PRODUCTION = NODE_ENV === 'production';
-// const _PROJECT_NAME = `'${pkg.name}'`;
-// const _PROJECT_VERSION = `'${pkg.version}'`;
-// const SUBFOLDER_LOCATION = process.env.SUBFOLDER_LOCATION || '';
 const INPUTFOLDER = process.env.INPUTFOLDER || 'build';
-// const DEF_LANG = process.env.DEF_LANG || Object.keys(pkg.supportedLanguages)[0];
-
-// function withTemplate(name) {
-//   const newName = `${name}${APP_TEMPLATE ? `.${APP_TEMPLATE}` : ''}`;
-//   return newName;
-// }
 
 
 // =========== RULES ===========
@@ -55,21 +45,6 @@ rules.push({
     },
   ],
 });
-
-// EJS templating support for files inside ./app
-// rules.push({
-//   test: /\/app\/theme\/navigation\/.*\.ejs$/,
-//   // loader:
-//   // loader: 'ejs-loader?variable=data',
-//   loader: [
-//     // 'html-loader?interpolate',
-//     'ejs-loader?variable=data',
-//   ],
-// });
-// HTML support
-// rules.push({
-//   test: /.*\.html/,
-// });
 
 // Sass + CSS-Modules support
 rules.push({
@@ -128,8 +103,7 @@ plugins.push(new webpack.LoaderOptionsPlugin({
   debug: !IS_PRODUCTION,
   options: {
     sassLoader: {
-      data: `@import "${path.resolve(__dirname, './app/theme/config.scss')}";`,
-      // data: `@import "${path.resolve(__dirname, `./app/theme/${withTemplate('_config')}.scss`)}";`,
+      data: `@import "${path.resolve(__dirname, './examples/theme/config.scss')}";`,
     },
     context: '/',
   },
@@ -162,35 +136,29 @@ if (IS_PRODUCTION) {
 
 const environmentOptions = {
   IS_PRODUCTION,
-  // APP_TEMPLATE: JSON.stringify(APP_TEMPLATE),
-  // SUBFOLDER_LOCATION: JSON.stringify(SUBFOLDER_LOCATION),
-  // subfolder: SUBFOLDER_LOCATION || '',
-  // AUTO_LOGIN: process.env.AUTO_LOGIN || 0,
-  application: JSON.parse(JSON.stringify(pkg)),
-  // links,
-  // language: JSON.stringify(DEF_LANG),
   name: pkg.name,
-  title: JSON.stringify(pkg.version),
-  version: pkg.description,
+  title: pkg.description,
   description: `${pkg.description} v${pkg.version}`,
-  homepage: JSON.stringify(pkg.homepage),
-  // homepage: JSON.stringify(IS_PRODUCTION ? pkg.homepage : pkg.homepage_test),
+  application: {
+    name: JSON.stringify(pkg.name),
+    version: JSON.stringify(pkg.version),
+    homepage: JSON.stringify(pkg.homepage),
+  },
   homepage_test: JSON.stringify(pkg.homepage_test),
   homepage_dev: JSON.stringify(pkg.homepage_dev),
 
 };
-console.log(environmentOptions);
 plugins.push(new ExtractTextPlugin({ filename: `${pkg.name}_${pkg.version}.css?release=${new Date().getTime()}` }));
 
 
 plugins.push(new webpack.DefinePlugin({ ENV: environmentOptions }));
 
 plugins.push(new HtmlWebpackPlugin(Object.assign({
-  template: IS_PRODUCTION ? './app/theme/index.template.ejs' : './app/theme/index.template.ejs',
+  template: IS_PRODUCTION ? './examples/theme/index.template.ejs' : './examples/theme/index.template.ejs',
   inject: 'body',
 }, environmentOptions)));
 plugins.push(new HtmlWebpackPlugin(Object.assign({
-  template: IS_PRODUCTION ? './app/theme/index.template.ejs' : './app/theme/index.template.ejs',
+  template: IS_PRODUCTION ? './examples/theme/index.template.ejs' : './examples/theme/index.template.ejs',
   filename: '200.html',
   inject: 'body',
 }, environmentOptions)));
