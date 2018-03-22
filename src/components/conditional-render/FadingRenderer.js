@@ -1,21 +1,29 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { oneOrManyChildElements } from '../../prop-types';
+
+import styles from './FadingRenderer.scss';
 
 export default class FadingRenderer extends React.Component {
   static propTypes = {
     children: oneOrManyChildElements,
+    isDisplaying: PropTypes.bool,
   }
 
   static defaultProps = {
+    isDisplaying: true,
   }
 
 
   render() {
     return (
-      <div style={{ opacity: '0.5', display: 'flex' }}>
-        <div style={{ flex: '0.1', fontSize: '10px' }}>TODO fading correctly!</div>
-        <div style={{ flex: '1' }}>
+      <div
+        className={classnames(styles.component, {
+          [`${styles.display}`]: this.props.isDisplaying,
+        })}
+      >
+        <div className={styles.children}>
           {this.props.children}
         </div>
       </div>

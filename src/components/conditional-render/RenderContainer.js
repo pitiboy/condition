@@ -1,7 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { oneOrManyChildElements } from '../../prop-types';
-import BasicRenderer from './BasicRenderer';
+
+
+const BasicRenderer = props => (props.isDisplaying ? <div>{props.children}</div> : null);
+BasicRenderer.propTypes = {
+  children: oneOrManyChildElements,
+  isDisplaying: PropTypes.bool,
+};
+BasicRenderer.defaultProps = {
+  isDisplaying: true,
+};
+
 
 export default class RenderContainer extends React.Component {
   static propTypes = {
@@ -49,15 +59,18 @@ export default class RenderContainer extends React.Component {
     return newChild;
   }
 
-  foundFirstToRender(child) {
-    this.firstRenderedComponent = child;
+  foundComponentToRender(child) {
+    this.foundRenderedComponent = child;
+  }
+  cleanComponentToRender() {
+    this.foundRenderedComponent = null;
   }
 
   isToBeRendered({ condition, renderIfNoValid }) {
-    // console.debug('isToBeRendered (', this.props.renderAllValid, ' && ', condition, ') ||', (this.firstRenderedComponent === null && condition), '|| ', renderIfNoValid);
-    return (this.props.renderAllValid && condition)
-       || (this.firstRenderedComponent === null && condition)
-       || (this.firstRenderedComponent === null && renderIfNoValid) // TODO: Apply different loop to check renderIfNoValid Children after evaluating all IFs
+    // console.debug('isToBeRendered (', this.props.renderAllValid, ' && ', condition, ') || (2nd)', this.foundRenderedComponent === null, (this.foundRenderedComponent === null && condition), '|| (3rd)', renderIfNoValid);
+    return (this.props.renderAllValid && condition && !renderIfNoValid)
+       || (this.foundRenderedComponent === null && condition && !renderIfNoValid)
+       || (this.foundRenderedComponent === null && !condition && renderIfNoValid) // TODO: Apply different loop to check renderIfNoValid Children after evaluating all IFs
       ;
   }
 
@@ -66,35 +79,42 @@ export default class RenderContainer extends React.Component {
     renderIfNoValid: true,
   }
 
-  firstRenderedComponent = null;
+  foundRenderedComponent = null;
+
+  doRenderComponent({ child, index }) {
+    return (
+      <this._rendererComponent key={index} isDisplaying={this.isToBeRendered(child.props)}>
+        {this.cleanUpChild(child)}
+      </this._rendererComponent>
+    );
+  }
 
 
   render() {
+    this.cleanComponentToRender();
+
     return (
       <div>
         {React.Children.map(this.getConditionalChildrenList, (child, index) => {
-          if (this.isToBeRendered(child.props)) {
-            this.foundFirstToRender(child);
+          const r = this.doRenderComponent({ child, index });
 
-            return (
-              <this._rendererComponent key={index}>
-                {this.cleanUpChild(child)}
-              </this._rendererComponent>
-            );
+          // TODO: might be better with callback passed to doRenderComponent
+          if (this.isToBeRendered(child.props)) {
+            this.foundComponentToRender(child);
           }
-          return null;
+
+          return r;
         })}
-        {React.Children.map(this.getOtherChildrenList, (child, index) => {
-          if (this.isToBeRendered(child.props)) {
-            if (!this.props.renderAllOther) this.foundFirstToRender(child);
 
-            return (
-              <this._rendererComponent key={index}>
-                {this.cleanUpChild(child)}
-              </this._rendererComponent>
-            );
+        {React.Children.map(this.getOtherChildrenList, (child, index) => {
+          const r = this.doRenderComponent({ child, index });
+
+          // TODO: might be better with callback passed to doRenderComponent
+          if (this.isToBeRendered(child.props)) {
+            if (!this.props.renderAllOther) this.foundComponentToRender(child);
           }
-          return null;
+
+          return r;
         })}
       </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { oneOrManyChildElements } from '../../src/prop-types';
+import { oneOrManyChildElements } from '../../../src/prop-types';
 
 export default class SampleComponent extends React.Component {
   static propTypes = {
