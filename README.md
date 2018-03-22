@@ -20,7 +20,7 @@ Here is my different version of if-else closure:
 - To apply a new governance component, called RenderContainer,
 - pass all conditional if-else React as components / DOM entries
 - add a new specific props entry, called condition, to the children act as logical operator
-- let the governance component evaluate if the actual child needs to be rendered based on the condition
+- let the governance component evaluate if the actual child needs to be rendered based on the *`condition`*
 
 It applies 1 'hack' compare to all other logical operator based described in above article, it inserts 2 additional <div> DOM element to the DOM.
 - 1 element to the RenderContainer
@@ -39,13 +39,14 @@ import { RenderContainer } from '../src/components/conditional-render';
 #### Props / Config Options
 you can pass the following properties to *`RenderContainer`*
 - **`renderAllValid`** is `bool`, default  is `false`. This enforces the if-elseif-else behavior by default, other than all valid items are displayed
+- **`renderAllOther`** is `bool`, default  is `false` means disabled. This let multiple ELSEs to be displayed if there were no *`condition`* to be found = `true`
 - **`rendererComponent`** is a component of type `PropTypes.func`, default is `BasicRenderer`, which is a self-component used for displaying the child embedded in a `<div>`. You can add your own custom renderer Component. Later you might use `FadeingRenderer` *(to be implemented)* which mimics fadingIn with CSS transition.
 
 you can pass the following properties to *Child* objects
 - **`condition`** is `bool`, default is `false`. This is the evaluator if a child is to be displayed or not
 - **`renderIfNoValid`** is `bool`, default is `false` please note multiple renderIfNoValid could be applied
 #### dependencies
-see [package.json](https://github.com/pitiboy/react-conditional-render/blob/master/package.json) for details
+- see [package.json](https://github.com/pitiboy/react-conditional-render/blob/master/package.json) for details
 
 ### Example:
 Check the full example file [source code here](https://github.com/pitiboy/react-conditional-render/blob/master/examples/App.js)
