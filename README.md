@@ -24,17 +24,17 @@ You can find a very basic [demo here](https://react-conditional-render.surge.sh)
 Here is my different version of if-else closure:
 - To apply a new governance component, called RenderContainer,
 - pass all conditional if-else React as components / DOM entries
-- add a new specific props entry, called condition, to the children act as logical operator
+- add a new specific props entry, called *`condition`*, to the children act as logical operator
 - let the governance component evaluate if the actual child needs to be rendered based on the *`condition`*
 
-It applies 1 'hack' compare to all other logical operator based described in above article, it inserts 2 additional <div> DOM element to the DOM.
+It applies 1 'hack' compare to all other logical operator based described in above article, it inserts 2 additional *`div`* DOM element to the DOM.
 - 1 element to the RenderContainer
 - +1 element to contain the appearing Children
-  This might sound, but serves as additional feature, to have embedded the children into a container, which might have some further actions, like animated appear/disappear mechanism. This I found even a very strong feature :)
+  This might sound overkill, but serves as additional feature, to have embedded the children into a container, which might have some further actions, like animated appear/disappear mechanism. This I found even a very strong feature :)
 
 
-### How to use
-#### How to add to your project
+### How to use?
+#### How to add to your project:
 
 currently there is no npm package exists, you need to download, and add manually to your local source folder, then import to your React App:
 ```js
@@ -45,7 +45,7 @@ import { RenderContainer } from '../src/components/conditional-render';
 import { RenderContainer, FadingRenderer } from '../src/components/conditional-render';
 ```
 
-#### Props / Config Options
+#### Props / Config Options:
 you can pass the following properties to *`RenderContainer`*
 - **`renderAllValid`** is `PropTypes.bool`, default  is `false`. This enforces the if-elseif-else behavior by default, other than all valid items are displayed
 - **`renderAllOther`** is `PropTypes.bool`, default  is `false` means disabled. This let multiple ELSEs to be displayed if there were no *`condition`* to be found = `true`
@@ -54,7 +54,7 @@ you can pass the following properties to *`RenderContainer`*
 you can pass the following properties to *Child* objects
 - **`condition`** is `PropTypes.bool`, default is `false`. This is the evaluator if a child is to be displayed or not
 - **`renderIfNoValid`** is `PropTypes.bool`, default is `false` please note multiple renderIfNoValid could be applied
-#### dependencies
+#### dependencies:
 - see [package.json](https://github.com/pitiboy/react-conditional-render/blob/master/package.json) for details
 
 ### Example:
