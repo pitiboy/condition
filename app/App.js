@@ -5,7 +5,7 @@ import React from 'react';
 import funcs from './components/conditional-render';
 
 const { RenderContainer, version } = funcs;
-console.log('TODO: smarter import for RenderContainer', funcs, RenderContainer, version);
+console.log('TODO: smarter import for RenderContainer', funcs, version);
 
 
 export default function App() {
@@ -23,6 +23,7 @@ export default function App() {
         <div condition={new Date().getDay() === 4}>Thursday</div>
         <div condition={new Date().getDay() === 5}>Friday</div>
         <div condition={new Date().getDay() === 6}>Saturday</div>
+        <div else>Saturday</div>
       </RenderContainer>
     </div>
   );

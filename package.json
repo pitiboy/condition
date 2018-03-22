@@ -15,8 +15,8 @@
     "prebuild": "yarn test",
     "build": "yarn cleanbuild; NODE_ENV=production webpack -p --config webpack.config.js"
   },
-  "author": "Peter Horvath <horvath.peter@fejlesztesek.hu>",
-  "contributors": "N/A",
+  "author": "Peter Horvath <pitiboy@gmail.com>",
+  "contributors": "Peter Horvath <horvath.peter@fejlesztesek.hu>",
   "repository": "https://github.com/pitiboy/react-conditional-render",
   "bugs": "https://github.com/pitiboy/react-conditional-render/issues",
   "license": "Apache 2.0",

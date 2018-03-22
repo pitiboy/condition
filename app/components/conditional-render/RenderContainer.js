@@ -11,6 +11,10 @@ export default class RenderContainer extends React.Component {
   static defaultProps = {
   }
 
+  state = {
+    renderedComponent: null,
+  }
+
   // TODO: remove condition from child's props
 
   render() {
