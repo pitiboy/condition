@@ -4,7 +4,8 @@
 
 ## How to apply If-Else condition in React/JSX?
 
-There are many ways to do so.
+There are many ways to do so. I personally favour to use the logical operation `{true && (<JSX/>)}` for simple expressions as much as possible.
+Of course this is the easiest thing to do, and there are a lot more other nice or less nice solutions.
 For instance, I were inspired by the blog [this entry](https://blog.logrocket.com/conditional-rendering-in-react-c6b0e5af381e)
 This is a comprehensive guidance. I valued the ‘If component’ and ‘Higher-order components’ section the most, as it gave new knowledge for me.
 
