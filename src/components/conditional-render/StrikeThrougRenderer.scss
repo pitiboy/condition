@@ -1,0 +1,12 @@
+.component {
+  opacity: 0.4;
+  text-decoration: line-through;
+
+  &.display {
+    opacity: 1;
+    text-decoration: none;
+  }
+
+  .children {
+  }
+}

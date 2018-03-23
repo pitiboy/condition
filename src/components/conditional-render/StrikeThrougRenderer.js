@@ -1,8 +1,8 @@
 import CSSRenderer from './CSSRenderer';
 
-import styles from './FadingRenderer.scss';
+import styles from './StrikeThrougRenderer.scss';
 
-export default class FadingRenderer extends CSSRenderer {
+export default class StrikeThrougRenderer extends CSSRenderer {
   get stylesComponent() {
     return styles.component;
   }

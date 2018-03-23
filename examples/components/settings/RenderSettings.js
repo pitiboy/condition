@@ -46,8 +46,8 @@ export default class RenderSettings extends React.Component {
 
 
     const containerCheckboxes = [
-      { id: 'renderAllValid', label: 'renderAllValid', checked: renderAllValid, onChange: e => this.props.setContainerParameter({ id: 'renderAllValid', value: e.target.checked }) },
-      { id: 'renderAllOther', label: 'renderAllOther', checked: renderAllOther, onChange: e => this.props.setContainerParameter({ id: 'renderAllOther', value: e.target.checked }) },
+      { id: 'renderAllValid', label: 'renderAllValid', name: 'renderAllValid', checked: renderAllValid, onChange: e => this.props.setContainerParameter({ id: 'renderAllValid', value: e.target.checked }) },
+      { id: 'renderAllOther', label: 'renderAllOther', name: 'renderAllOther', checked: renderAllOther, onChange: e => this.props.setContainerParameter({ id: 'renderAllOther', value: e.target.checked }) },
     ];
 
     return (
@@ -62,7 +62,9 @@ export default class RenderSettings extends React.Component {
           onChange={e => this.props.setContainerParameter({ id: 'rendererComponent', value: e.target.value })}
         >
           <option value="">BasicRenderer</option>
+          <option value="FlexRenderer">FlexRenderer</option>
           <option value="FadingRenderer">FadingRenderer</option>
+          <option value="StrikeThrougRenderer">StrikeThrougRenderer</option>
           <option value="EveryRenderer">EveryRenderer</option>
         </SelectRenderer>
       </div>

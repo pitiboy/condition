@@ -16,6 +16,7 @@ export default class ChildrenSettings extends React.Component {
   render() {
     const conditionalCheckboxes = this.props.items.filter(item => typeof item.renderIfNoValid === 'undefined').map((item, index) => ({
       id: index,
+      name: `${item.label}${index}`,
       label: item.label,
       checked: item.condition,
       value: index,

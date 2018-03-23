@@ -5,7 +5,7 @@ import StaticExample from './StaticExample';
 import IntervalExample from './IntervalExample';
 import ConfigurableExample from './ConfigurableExample';
 import RenderSettings from '../settings/RenderSettings';
-import { FadingRenderer } from '../../../src/components/conditional-render';
+import { FadingRenderer, FlexRenderer, StrikeThrougRenderer } from '../../../src/components/conditional-render';
 
 import styles from './ExampleContainer.scss';
 
@@ -21,7 +21,8 @@ export default class ExampleContainer extends React.Component {
     switch (this.state.rendererComponent) {
     case '': return null;
     case 'FadingRenderer': return FadingRenderer;
-    case '#FadingRenderer': return FadingRenderer;
+    case 'FlexRenderer': return FlexRenderer;
+    case 'StrikeThrougRenderer': return StrikeThrougRenderer;
     default: return this.state.rendererComponent;
     }
   }

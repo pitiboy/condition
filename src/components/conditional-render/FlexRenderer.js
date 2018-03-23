@@ -1,8 +1,8 @@
 import CSSRenderer from './CSSRenderer';
 
-import styles from './FadingRenderer.scss';
+import styles from './FlexRenderer.scss';
 
-export default class FadingRenderer extends CSSRenderer {
+export default class FlexRenderer extends CSSRenderer {
   get stylesComponent() {
     return styles.component;
   }
