@@ -1,6 +1,6 @@
 {
   "name": "react-conditional-render",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "React component to handle if-else like conditions in JSX",
   "keywords": [
     "React",

@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { oneOrManyChildElements } from '../../prop-types';
 
-
-const BasicRenderer = props => (props.isDisplaying ? <div>{props.children}</div> : null);
+const BasicRenderer = props => (props.isDisplaying ? <div className="BasicRenderer_component">{props.children}</div> : null);
 BasicRenderer.propTypes = {
   children: oneOrManyChildElements,
   isDisplaying: PropTypes.bool,
@@ -28,10 +27,12 @@ export default class RenderContainer extends React.Component {
 
 
   get getConditionalChildrenList() {
-    return this._getChildrenList.filter(child => !child.props.renderIfNoValid);
+    // NOTE: this condition restricts children, not having any of our required property, such as comments, or objects with no propTypes
+     // every comment to be displayed should be '!child.props || !child.props.renderIfNoValid'
+    return this._getChildrenList.filter(child => child.props && !child.props.renderIfNoValid);
   }
   get getOtherChildrenList() {
-    return this.props.children.filter(child => child.props.renderIfNoValid);
+    return this.props.children.filter(child => child.props && child.props.renderIfNoValid);
   }
   get _getChildrenList() {
     return this.props.children;
@@ -54,7 +55,7 @@ export default class RenderContainer extends React.Component {
 
     // TODO: remove these only for some basic child.types!
 
-    const newChild = (<child.type {...otherProps}>{child.props.children}</child.type>);
+    const newChild = child.props ? (<child.type {...otherProps}>{child.props.children}</child.type>) : null;
     // console.debug('replaced props from ', child.props, 'to', newChild.props);
     return newChild;
   }
@@ -66,12 +67,16 @@ export default class RenderContainer extends React.Component {
     this.foundRenderedComponent = null;
   }
 
-  isToBeRendered({ condition, renderIfNoValid }) {
-    // console.debug('isToBeRendered (', this.props.renderAllValid, ' && ', condition, ') || (2nd)', this.foundRenderedComponent === null, (this.foundRenderedComponent === null && condition), '|| (3rd)', renderIfNoValid);
-    return (this.props.renderAllValid && condition && !renderIfNoValid)
-       || (this.foundRenderedComponent === null && condition && !renderIfNoValid)
-       || (this.foundRenderedComponent === null && !condition && renderIfNoValid) // TODO: Apply different loop to check renderIfNoValid Children after evaluating all IFs
+  isToBeRendered(props) {
+    if (!props) return false;
+    const { condition, renderIfNoValid } = props;
+    const _renderIfNoValid = typeof renderIfNoValid !== 'undefined' && renderIfNoValid;
+    const shallRender = (this.props.renderAllValid && condition && !_renderIfNoValid)
+       || (this.foundRenderedComponent === null && condition && !_renderIfNoValid)
+       || (this.foundRenderedComponent === null && !condition && _renderIfNoValid) // TODO: Apply different loop to check renderIfNoValid Children after evaluating all IFs
       ;
+    // console.debug('isToBeRendered ', shallRender, '=== (', this.props.renderAllValid, ' && ', condition, ') || (2nd)', this.foundRenderedComponent === null, (this.foundRenderedComponent === null && condition), '|| (3rd)', renderIfNoValid);
+    return shallRender;
   }
 
   _removeSpecialChildProps = {
@@ -94,7 +99,7 @@ export default class RenderContainer extends React.Component {
     this.cleanComponentToRender();
 
     return (
-      <div>
+      <div className="RenderContainer_component">
         {React.Children.map(this.getConditionalChildrenList, (child, index) => {
           const r = this.doRenderComponent({ child, index });
 

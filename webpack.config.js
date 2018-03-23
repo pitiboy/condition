@@ -58,8 +58,8 @@ rules.push({
         options: {
           sourceMap: !IS_PRODUCTION,
           modules: true,
-          // localIdentName: '[name]_[local]',
-          localIdentName: '[name]_[local].[hash:base64:3]',
+          localIdentName: '[name]_[local]',
+          // localIdentName: '[name]_[local].[hash:base64:3]',
           importLoaders: true,
         },
       },
