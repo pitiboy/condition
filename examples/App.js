@@ -1,7 +1,6 @@
 import React from 'react';
 
-import Example from './components/examples/Example';
-import ConfigurableExample from './components/examples/ConfigurableExample';
+import ExampleContainer from './components/examples/ExampleContainer';
 
 export default function App() {
   return (
@@ -13,15 +12,7 @@ export default function App() {
         See Project at Github: <a href="https://github.com/pitiboy/react-conditional-render" target="_blank" rel="noopener noreferrer">https://github.com/pitiboy/react-conditional-render</a>
       </p>
 
-
-      <h2>Examples</h2>
-
-      <h3>Automatic example</h3>
-      <Example />
-
-      <h3>Configurable example</h3>
-      <ConfigurableExample />
-
+      <ExampleContainer />
       {/*
 
       <h3>renderIfNoValid && renderAllOther = false</h3>

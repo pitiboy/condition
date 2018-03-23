@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormGroup, ControlLabel, Checkbox, FormControl, HelpBlock } from 'react-bootstrap';
 import { oneOrManyChildElements, functionOrStringText } from '../../../src/prop-types';
 
-import styles from './Settings.scss';
+import styles from './RenderSettings.scss';
 
 const SelectRenderer = props => (
   <FormGroup controlId={props.id}>
@@ -23,7 +23,7 @@ SelectRenderer.propTypes = {
   children: oneOrManyChildElements,
 };
 
-export default class Settings extends React.Component {
+export default class RenderSettings extends React.Component {
   static propTypes = {
     // children: oneOrManyChildElements,
     setContainerParameter: PropTypes.func.isRequired,
@@ -34,6 +34,7 @@ export default class Settings extends React.Component {
   }
 
   static defaultProps = {
+    rendererComponent: '',
   }
 
   render() {
@@ -57,7 +58,7 @@ export default class Settings extends React.Component {
         <SelectRenderer
           id="rendererComponent"
           label="rendererComponent"
-          value={rendererComponent}
+          value={rendererComponent || ''}
           onChange={e => this.props.setContainerParameter({ id: 'rendererComponent', value: e.target.value })}
         >
           <option value="">BasicRenderer</option>

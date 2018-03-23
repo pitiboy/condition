@@ -95,7 +95,5 @@ Check the full example file [source code here](https://github.com/pitiboy/react-
 ### Todos to be coming:
 - Implement wrapper helper components, like `FadingRenderer`, to apply other actions on condition changes (such as fading animation)
 
-- Make the test even more interactive, and 'responsive' to user, by thicking checkboxes near all lines for render condition status change
-
 - apply warning on having multiple renderIfNoValid items
 - proper unit testing

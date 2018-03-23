@@ -1,24 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { RenderContainer, FadingRenderer } from '../../../src/components/conditional-render';
+import { RenderContainer } from '../../../src/components/conditional-render';
 
+import ChildrenSettings from '../settings/ChildrenSettings';
 import SampleComponent from '../sample/SampleComponent';
-import Settings from '../settings/Settings';
-
-console.log('TODO: use FadingRenderer', FadingRenderer);
 
 export default class ConfigurableExample extends React.Component {
   static propTypes = {
-    text: PropTypes.string,
+    renderAllValid: PropTypes.bool,
+    renderAllOther: PropTypes.bool,
+    rendererComponent: PropTypes.func,
   }
 
   static defaultProps = {
   }
 
   state = {
-    renderAllValid: false,
-    renderAllOther: false,
-    rendererComponent: '',
     items: [
       // floors:
       { condition: true, label: 'Component#Where do you ' },
@@ -38,38 +35,31 @@ export default class ConfigurableExample extends React.Component {
     ],
   }
 
-  get getRendererComponent() {
-    switch (this.state.rendererComponent) {
-    case 'FadingRenderer': return FadingRenderer;
-    case '#FadingRenderer': return FadingRenderer;
-    default: return this.state.rendererComponent;
-    }
-  }
 
-  setContainerParameter({ id, value }) {
-    this.setState({ [`${id}`]: value });
+  onItemChange({ id, value }) {
+    this.setState((prevState) => {
+      const updatedRow = Object.assign(
+        prevState.items[id],
+        { condition: value },
+      );
+      const newItems = prevState.items.slice();
+      newItems[id] = updatedRow;
+      return { items: newItems };
+    });
+    // this.setState({ [`${id}`]: value });
   }
 
   render() {
     // console.log('state', this.state);
     return (
       <div>
-        <div style={{ float: 'right', width: '30vw' }}>
-          <Settings
-            renderAllValid={this.state.renderAllValid}
-            renderAllOther={this.state.renderAllOther}
-            rendererComponent={this.state.rendererComponent}
-            setContainerParameter={e => this.setContainerParameter(e)}
-            items={this.state.items}
-            // updateItem={() => this.updateItem()}
-          />
-        </div>
-
         <div style={{ float: 'left', width: '70vw' }}>
+          <h3>Configurable example</h3>
+
           <RenderContainer
-            renderAllValid={this.state.renderAllValid}
-            renderAllOther={this.state.renderAllOther}
-            rendererComponent={this.getRendererComponent}
+            renderAllValid={this.props.renderAllValid}
+            renderAllOther={this.props.renderAllOther}
+            rendererComponent={this.props.rendererComponent}
           >
             <h5 renderIfNoValid={this.state.items[9].renderIfNoValid}>ELSE: first match!</h5>
 
@@ -97,6 +87,14 @@ export default class ConfigurableExample extends React.Component {
 
             <h5 renderIfNoValid={this.state.items[9].renderIfNoValid}>ELSE3: last else!</h5>
           </RenderContainer>
+        </div>
+
+        <div style={{ float: 'right', width: '25vw' }}>
+          <h4>Renderer Settings:</h4>
+          <ChildrenSettings
+            items={this.state.items}
+            onChange={e => this.onItemChange(e)}
+          />
         </div>
       </div>
 
