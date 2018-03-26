@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { oneOrManyChildElements } from '../../prop-types';
+import FlexRenderer from './FlexRenderer';
+import FadingRenderer from './FadingRenderer';
 
 const BasicRenderer = props => (props.isDisplaying ? <div className="BasicRenderer_component">{props.children}</div> : null);
 BasicRenderer.propTypes = {
@@ -98,9 +100,11 @@ export default class RenderContainer extends React.Component {
 
   render() {
     this.cleanComponentToRender();
-
+    const className = this.props.className
+     || (this.props.rendererComponent === FadingRenderer && 'RenderContainer_FadingRenderer')
+     || (this.props.rendererComponent === FlexRenderer && 'RenderContainer_FlexRenderer');
     return (
-      <div className={`RenderContainer_component ${this.props.className}`}>
+      <div className={`RenderContainer_component ${className}`}>
         {React.Children.map(this.getConditionalChildrenList, (child, index) => {
           const r = this.doRenderComponent({ child, index });
 

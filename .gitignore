@@ -35,6 +35,8 @@ node_modules
 # App packaged
 dist
 build/*.js
+build/*.map
+build/react-conditional-render*
 build/index.html
 build/200.html
 

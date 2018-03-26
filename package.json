@@ -1,6 +1,6 @@
 {
   "name": "react-conditional-render",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "React component to handle if-else like conditions in JSX",
   "keywords": [
     "React",
@@ -9,7 +9,7 @@
   ],
   "main": "./examples/index.js",
   "scripts": {
-    "dev": "NODE_ENV=development AUTO_LOGIN=1 webpack-dev-server --content-base build/ --config webpack.config.js --hot --inline",
+    "dev": "NODE_ENV=production AUTO_LOGIN=1 webpack-dev-server --content-base build/ --config webpack.config.js --hot --inline",
     "test": "jest",
     "cleanbuild": "rm -rf ./build/*.js;rm -rf ./build/react-conditional-render*.css",
     "prebuild": "yarn test",
