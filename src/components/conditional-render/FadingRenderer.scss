@@ -1,10 +1,13 @@
 .component {
   opacity: 0;
   transition: opacity 0.7s ease;
-  position: absolute;
+  overflow: hidden;
+  // position: absolute;
+  height: 0px;
 
   &.display {
-    position: relative;
+    height: auto;
+    // position: relative;
     opacity: 1;
   }
 

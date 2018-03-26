@@ -65,3 +65,15 @@ body {
     }
   }
 }
+
+
+:global {
+  .FlexRenderer_component {
+    background-color: #f2f2e2;
+    opacity: 0.2;
+
+    &.FlexRenderer_display {
+      background-color: #f2e2f2;
+    }
+  }
+}

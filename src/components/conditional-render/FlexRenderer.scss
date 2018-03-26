@@ -1,5 +1,5 @@
 :global {
-  .RenderContainer_component {
+  .RenderContainer_FlexRenderer {
     display: flex;
     // flex-direction: column;
   }
@@ -16,8 +16,6 @@
   // font-size: 100%;
   // font: inherit;
   // vertical-align: baseline;
-  background-color: #f2f2e2;
-  opacity: 0;
 
   // & > * {
   //   position: absolute;
@@ -27,7 +25,6 @@
   &.display {
     flex: 1;
     opacity: 1;
-    background-color: #f2e2f2;
   }
 
   .children {

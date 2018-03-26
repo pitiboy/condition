@@ -14,7 +14,7 @@ export default class ExampleContainer extends React.Component {
   state = {
     renderAllValid: true,
     renderAllOther: false,
-    rendererComponent: null,
+    rendererComponent: 'FlexRenderer',
   }
 
   get getRendererComponent() {

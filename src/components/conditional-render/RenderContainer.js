@@ -18,6 +18,7 @@ export default class RenderContainer extends React.Component {
     renderAllValid: PropTypes.bool,
     renderAllOther: PropTypes.bool,
     rendererComponent: PropTypes.func,
+    className: PropTypes.string,
   }
 
   static defaultProps = {
@@ -99,7 +100,7 @@ export default class RenderContainer extends React.Component {
     this.cleanComponentToRender();
 
     return (
-      <div className="RenderContainer_component">
+      <div className={`RenderContainer_component ${this.props.className}`}>
         {React.Children.map(this.getConditionalChildrenList, (child, index) => {
           const r = this.doRenderComponent({ child, index });
 

@@ -60,6 +60,7 @@ export default class ConfigurableExample extends React.Component {
             renderAllValid={this.props.renderAllValid}
             renderAllOther={this.props.renderAllOther}
             rendererComponent={this.props.rendererComponent}
+            className={this.props.rendererComponent && this.props.rendererComponent.name && `RenderContainer_${this.props.rendererComponent.name}`}
           >
             <h5 renderIfNoValid={this.state.items[9].renderIfNoValid}>ELSE: first match!</h5>
 
